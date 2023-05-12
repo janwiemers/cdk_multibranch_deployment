@@ -1,0 +1,70 @@
+{
+  "availability-zones:account=224935473367:region=eu-central-1": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "ssm:account=224935473367:parameterName=/check24/reisen/system-testing/vpcId:region=eu-central-1": "vpc-0dc7f51158fa3a132",
+  "ssm:account=224935473367:parameterName=/check24/reisen/system-testing/listenerArn:region=eu-central-1": "arn:aws:elasticloadbalancing:eu-central-1:224935473367:listener/app/c24-resisen-testing-loadbalancer/69c7017ad46f1974/6e6ea9e9e730ea77",
+  "load-balancer-listener:account=224935473367:listenerArn=arn$:aws:elasticloadbalancing:eu-central-1:224935473367:listener/app/c24-resisen-testing-loadbalancer/69c7017ad46f1974/6e6ea9e9e730ea77:loadBalancerType=application:region=eu-central-1": {
+    "listenerArn": "arn:aws:elasticloadbalancing:eu-central-1:224935473367:listener/app/c24-resisen-testing-loadbalancer/69c7017ad46f1974/6e6ea9e9e730ea77",
+    "listenerPort": 80,
+    "securityGroupIds": [
+      "sg-0e73442a885f7e319"
+    ]
+  },
+  "security-group:account=224935473367:region=eu-central-1:securityGroupId=sg-0e73442a885f7e319": {
+    "securityGroupId": "sg-0e73442a885f7e319",
+    "allowAllOutbound": false
+  },
+  "ssm:account=224935473367:parameterName=/check24/reisen/system-testing/clusterArn:region=eu-central-1": "arn:aws:ecs:eu-central-1:224935473367:cluster/c24-reisen-testing-cluster",
+  "vpc-provider:account=224935473367:filter.vpc-id=vpc-0dc7f51158fa3a132:region=eu-central-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-0dc7f51158fa3a132",
+    "vpcCidrBlock": "10.0.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Private",
+        "type": "Private",
+        "subnets": [
+          {
+            "subnetId": "subnet-009f11b1806772a4e",
+            "cidr": "10.0.128.0/18",
+            "availabilityZone": "eu-central-1a",
+            "routeTableId": "rtb-07545a753cc10ef1c"
+          },
+          {
+            "subnetId": "subnet-08a8cd23c2f695187",
+            "cidr": "10.0.192.0/18",
+            "availabilityZone": "eu-central-1b",
+            "routeTableId": "rtb-072a98678461875d4"
+          }
+        ]
+      },
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-0575e21efde416cc0",
+            "cidr": "10.0.0.0/18",
+            "availabilityZone": "eu-central-1a",
+            "routeTableId": "rtb-0f34f9081866859d1"
+          },
+          {
+            "subnetId": "subnet-0357edc96b4c7fd88",
+            "cidr": "10.0.64.0/18",
+            "availabilityZone": "eu-central-1b",
+            "routeTableId": "rtb-0210e25f3647994e5"
+          }
+        ]
+      }
+    ]
+  },
+  "ssm:account=224935473367:parameterName=/check24/reisen/system-testing/clusterName:region=eu-central-1": "c24-reisen-testing-cluster",
+  "ssm:account=224935473367:parameterName=/check24/reisen/system-testing/clusterSecurityGroupId:region=eu-central-1": "sg-0e916b7d54afee721",
+  "security-group:account=224935473367:region=eu-central-1:securityGroupId=sg-0e916b7d54afee721": {
+    "securityGroupId": "sg-0e916b7d54afee721",
+    "allowAllOutbound": false
+  }
+}

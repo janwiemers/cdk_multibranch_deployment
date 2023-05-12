@@ -1,0 +1,9 @@
+{
+    "name": "create_schema",
+    "version": "0.1.0",
+    "dependencies": {
+        "@types/aws-lambda": "^8.10.102",
+        "aws-lambda": "1.0.7",
+        "mysql2": "^3.2.4"
+    }
+}
