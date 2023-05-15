@@ -99,6 +99,9 @@ export class Base extends cdk.Stack {
     });
 
     this.dbCluster.connections.allowFrom(this.sg, ec2.Port.allTraffic())
+    this.cluster.vpc.privateSubnets.forEach((subnet: ec2.ISubnet) => {
+      this.dbCluster.connections.allowDefaultPortFrom(ec2.Peer.ipv4(subnet.ipv4CidrBlock))
+    })
 
     new cdk.CfnOutput(this, 'DB Cluster ARN', { 
       value: this.dbCluster.clusterArn,

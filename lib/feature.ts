@@ -75,9 +75,6 @@ export class Feature extends cdk.Stack {
       cpu: 256,
       memoryLimitMiB: 512,
       targetProtocol: elb.ApplicationProtocol.HTTP,
-      // securityGroups: [
-      //   props.sg
-      // ],
       taskImageOptions: {
         image: ecs.ContainerImage.fromEcrRepository(props.registry, props.containerTag),
         environment: {
@@ -86,7 +83,9 @@ export class Feature extends cdk.Stack {
           DB_HOST: props.dbCluster.clusterEndpoint.hostname,
           DB_PORT: props.dbCluster.clusterEndpoint.port.toString(),
           DB_FEATURE_SECRET_ARN: secret.secretArn,
+          // DB_FEATURE_SECRET_ARN: "arn:aws:secretsmanager:eu-central-1:224935473367:secret:rds-db-credentials/cluster-XDRRPMD3MLNR3M2A5UVWB77Z4Y/user_my_feature/1683794870703-FkFCfk",
         }
+        
       },
     })
 

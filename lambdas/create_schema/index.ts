@@ -1,5 +1,6 @@
 import * as mysql from "mysql2/promise";
 import * as AWS from "aws-sdk"
+import { createHash } from "crypto";
 
 interface Credentials {
   host: string
@@ -8,6 +9,8 @@ interface Credentials {
   password: string,
   dbname: string
 }
+
+
 
 // Create a Secrets Manager client
 const secretsClient = new AWS.SecretsManager({
@@ -25,10 +28,10 @@ export async function handler() {
     database: dbRootCredentials.dbname,
   }
   const connection = await mysql.createConnection(connectionConfig);  
-
+  const encryptedPassword = createHash('sha256').update(dbFeatureCredentials.password).digest('hex');
   const createSchema = `CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME} DEFAULT CHARACTER SET = 'utf8' DEFAULT COLLATE 'utf8_general_ci';`
-  const createUser = `CREATE USER IF NOT EXISTS '${dbFeatureCredentials.username}'@'localhost' IDENTIFIED BY '${dbFeatureCredentials.password}';`
-  const grantPriviledges = `GRANT ALL PRIVILEGES ON ${process.env.DB_NAME}.* TO '${dbFeatureCredentials.username}'@'localhost';`
+  const createUser = `CREATE USER IF NOT EXISTS '${dbFeatureCredentials.username}'@'%' IDENTIFIED WITH sha256_password BY '${encryptedPassword}';`
+  const grantPriviledges = `GRANT ALL PRIVILEGES ON ${process.env.DB_NAME}.* TO '${dbFeatureCredentials.username}'@'%';`
   const flushPriviledges = `FLUSH PRIVILEGES;`
 
   try {

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "mysql2": "^3.2.4"
+    "mysql2": "^3.2.4",
+    "aws-lambda": "1.0.7"
   }
 }
