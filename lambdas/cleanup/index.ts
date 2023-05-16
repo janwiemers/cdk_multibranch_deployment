@@ -34,7 +34,7 @@ export async function handler(event: any) {
 
   const connection = await mysql.createConnection(connectionConfig); 
   const dropSchema = `DROP DATABASE IF EXISTS ${dbFeatureName};`
-  const dropUser = `DROP USER IF EXISTS '${dbFeatureUser}';`
+  const dropUser = `DROP USER IF EXISTS '${dbFeatureUser}'@'%';`
   try {
     await connection.execute(dropSchema)
     await connection.execute(dropUser)
