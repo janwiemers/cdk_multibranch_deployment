@@ -160,7 +160,7 @@ lambdaUrl.grantInvokeUrl(user)
 this.secret.grantRead(cleanupFunction)
 ```
 
-### Outputs and variables
+## Outputs and variables
 
 At last we want some information from our stack as outputs. To get those we can use `cdk.CfnOutput`
 
