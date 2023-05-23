@@ -1,5 +1,5 @@
 ---
-title: 3. Feature Stack
+title: 4. Feature Stack
 ---
 
 Feature Stack

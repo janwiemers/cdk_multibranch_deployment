@@ -3,6 +3,7 @@ title: "Check24 [Reisen] –  Testing System"
 navigation:
   - path: docs/README.md
   - path: docs/utilities.md
+  - path: docs/setup.md
   - path: docs/shared_stack.md
   - path: docs/build_app.md
   - path: docs/feature_stack.md

@@ -1,5 +1,5 @@
 ---
-title: 1. Shared Stack
+title: 2. Shared Stack
 ---
 
 Shared Stack

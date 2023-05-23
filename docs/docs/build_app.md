@@ -1,5 +1,5 @@
 ---
-title: 2. Build the sample application
+title: 3. Build the sample application
 ---
 
 Build the sample application
