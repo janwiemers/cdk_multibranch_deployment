@@ -128,9 +128,7 @@ const cleanupFunction = new lambda.Function(this, 'cleanup', {
   securityGroups: [
     this.sg
   ],
-  code: lambda.Code.fromAsset(path.join(__dirname, '..', 'lambdas', 'cleanup'), {
-    exclude: ["*.ts", "*.json"]
-  }),
+  code: lambda.Code.fromAsset(path.join(__dirname, '..', 'lambdas', 'cleanup')),
   environment: {
     "DB_ROOT_CREDENTIALS_ARN": this.secret.secretArn,
   }
@@ -139,6 +137,15 @@ const cleanupFunction = new lambda.Function(this, 'cleanup', {
 const lambdaUrl = cleanupFunction.addFunctionUrl({
   authType: lambda.FunctionUrlAuthType.AWS_IAM,
 });
+```
+
+### Allow instances in the subnet to access the database
+
+```ts
+this.dbCluster.connections.allowFrom(this.sg, ec2.Port.allTraffic())
+this.cluster.vpc.privateSubnets.forEach((subnet: ec2.ISubnet) => {
+  this.dbCluster.connections.allowDefaultPortFrom(ec2.Peer.ipv4(subnet.ipv4CidrBlock))
+})
 ```
 
 ### Adding IAM rights
