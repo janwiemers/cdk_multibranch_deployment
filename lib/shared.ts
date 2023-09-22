@@ -25,14 +25,14 @@ export class Shared extends cdk.Stack {
 
     // Docker Registry
     this.registry = new ecr.Repository(this, "docker-registry", {
-      repositoryName: "c24-reisen-testing-docker-registry",
+      repositoryName: "c24-testing-docker-registry",
       encryption: ecr.RepositoryEncryption.AES_256,
       removalPolicy: cdk.RemovalPolicy.DESTROY
     })
 
     // ECS Cluster
     this.cluster = new ecs.Cluster(this, "cluster", {
-      clusterName: "c24-reisen-testing-cluster",
+      clusterName: "c24-testing-cluster",
       enableFargateCapacityProviders: true,
     })
 
@@ -51,7 +51,7 @@ export class Shared extends cdk.Stack {
       vpc: this.cluster.vpc,
       vpcSubnets: this.cluster.vpc.selectSubnets(),
       credentials: rds.Credentials.fromSecret(this.secret, username),
-      clusterIdentifier: 'check24-reisen-testing-system',
+      clusterIdentifier: 'check24-testing-system',
       defaultDatabaseName: 'none',
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       scaling: {
@@ -111,7 +111,7 @@ export class Shared extends cdk.Stack {
     });
 
     // create iam user for cleanup
-    const userName = "check24-reisen-testing-system-cleanup-user"
+    const userName = "check24-testing-system-cleanup-user"
     const user = new iam.User(this, "cleanup-user", {
       userName: userName,
     })

@@ -39,7 +39,7 @@ In order to provision a VPC and the Elastic Compute Service cluster we're making
 
 ```ts
 this.cluster = new ecs.Cluster(this, "cluster", {
-  clusterName: "c24-reisen-testing-cluster",
+  clusterName: "c24-testing-cluster",
   enableFargateCapacityProviders: true,
 })
 ```
@@ -52,7 +52,7 @@ More Information on how to push/pull images to/from ECR [https://docs.aws.amazon
 
 ```ts
 this.registry = new ecr.Repository(this, "docker-registry", {
-  repositoryName: "c24-reisen-testing-docker-registry",
+  repositoryName: "c24-testing-docker-registry",
   encryption: ecr.RepositoryEncryption.AES_256,
   removalPolicy: cdk.RemovalPolicy.DESTROY
 })
@@ -73,7 +73,7 @@ this.dbCluster = new rds.ServerlessCluster(this, 'database cluster', {
   vpc: this.cluster.vpc,
   vpcSubnets: this.cluster.vpc.selectSubnets(),
   credentials: rds.Credentials.fromSecret(this.secret, username),
-  clusterIdentifier: 'check24-reisen-testing-system',
+  clusterIdentifier: 'check24-testing-system',
   defaultDatabaseName: 'none',
   removalPolicy: cdk.RemovalPolicy.DESTROY,
   scaling: {
@@ -93,7 +93,7 @@ We will create a `IAM User` a `Lambda function` as well as a security group to e
 This user is needed for the authentication to the lambda function url.
 
 ```ts
-const userName = "check24-reisen-testing-system-cleanup-user"
+const userName = "check24-testing-system-cleanup-user"
 const user = new iam.User(this, "cleanup-user", {
   userName: userName,
 })
