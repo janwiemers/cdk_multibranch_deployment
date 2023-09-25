@@ -70,9 +70,7 @@ const trigger = new triggers.TriggerFunction(this, 'createSchema', {
   timeout: cdk.Duration.seconds(20),
   runtime: lambda.Runtime.NODEJS_18_X,
   handler: 'index.handler',
-  code: lambda.Code.fromAsset(path.join(__dirname, "..", "lambdas", "create_schema"), {
-    exclude: ["*.ts", "*.json"]
-  }),
+  code: lambda.Code.fromAsset(path.join(__dirname, "..", "lambdas", "create_schema")),
   architecture: lambda.Architecture.ARM_64,
   securityGroups: [
     props.sg
